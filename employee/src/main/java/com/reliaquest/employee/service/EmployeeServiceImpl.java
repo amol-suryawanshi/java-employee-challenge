@@ -51,10 +51,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     public String deleteEmployee(Long id) {
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
 
-        employeeRepository.delete(employee);
-        return "";
+        employeeRepository.deleteById(id);
+        return "Employee deleted successfully!.";
     }
 }

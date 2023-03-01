@@ -2,6 +2,7 @@ package com.reliaquest.employee.controller;
 
 import com.reliaquest.employee.model.Employee;
 import com.reliaquest.employee.service.EmployeeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,8 +46,9 @@ public class IEmployeeController {
     }
 
     @PostMapping("/create")
-    ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
-        return ResponseEntity.ok(employeeService.createEmployee(employee));
+    @ResponseStatus(HttpStatus.CREATED)
+    Employee createEmployee(@RequestBody Employee employee) {
+        return employeeService.createEmployee(employee);
     }
 
     @DeleteMapping("/employees/{id}")
